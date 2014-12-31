@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author cherisolp49
+ */
+import java.awt.*; 
+import javax.swing.*;
+
+public class JButtonDemo extends JFrame {
+  JButton[] b = new JButton[4]; // reference to the button object
+
+  // constructor for ButtonFrame
+  JButtonDemo(){}
+  JButtonDemo(String b1, String b2, String b3, String b4) 
+  {
+   // super( title );                     // invoke the JFrame constructor
+    setLayout( new FlowLayout() );      // set the layout manager
+
+    b[0] = new JButton(b1); // construct a JButton
+    add( b[0] );                     // add the button to the JFrame
+    b[1] = new JButton(b2); // construct a JButton
+    add( b[1] );
+    b[2] = new JButton(b3); // construct a JButton
+    add( b[2] );
+    b[3] = new JButton(b4); // construct a JButton
+    add( b[3] );
+    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );  
+    setSize( 300, 300 );
+    setVisible( true );
+  }
+  public static void main ( String[] args )
+  {
+    JButtonDemo frm = new JButtonDemo();
+
+    frm.setSize( 300, 300 );     
+    frm.setVisible( true );   
+  }
+}
