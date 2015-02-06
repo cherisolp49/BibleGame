@@ -355,7 +355,7 @@ public class BibleTruth {
       
       public void JBQues(String  ques, String ans)
       {
-//          JButtonDemo b = new JButtonDemo();
+          b = new JButtonDemo();
           b.JButtonChoices(ques, ans, option[0], option[1], option[2], option[3]);
       }
 
