@@ -43,20 +43,25 @@ public class JButtonDemo extends JFrame {
     
     for(int j=0; j<b.length; j++)
     {
-        
+        displayJButton();
+            System.out.println("What is this: " + clicked);
         //System.out.println(b[j].getActionCommand());
         if(b[j].getActionCommand().equalsIgnoreCase(ans)){
-            correct = true;
-            isCorrect();
+//            correct = true;
+//            isCorrect();
         b[j].addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                JDialog d = new JDialog(frame, "You Got It Right!!!", true);
-                d.setLocationRelativeTo(frame);
-                d.setVisible(true);
+                //JDialog d = new JDialog(frame, "You Got It Right!!!", true);
+                System.out.println("You got it Right!!!!!!");
+//                d.setLocationRelativeTo(frame);
+//                d.setVisible(true);
+                System.out.println(clicked);
+                correct = true;
+                isCorrect();
                 clicked = true;
-                System.exit(0);
+                //System.exit(0);
             }
         });
         }else{
@@ -64,17 +69,24 @@ public class JButtonDemo extends JFrame {
         {
             public void actionPerformed(ActionEvent e)
             {
-                JDialog d = new JDialog(frame, "wrong!!!!!!", true);
-                d.setLocationRelativeTo(frame);
-                d.setVisible(true);
+//                JDialog d = new JDialog(frame, "wrong!!!!!!", true);
+//                d.setLocationRelativeTo(frame);
+//                d.setVisible(true);
+                System.out.println("Got it wrong!!!");
                 clicked = true;
+                isCorrect();
+                
             }
         });
         }
+            System.out.println("heehehehehehehyoyoyoyoyoyoyoyoy\t" + b.length);
         
     }
+            if(clicked==true){
+                frame.dispose();
+                System.out.println(clicked + "\t\t and ");
+            }
     
-    displayJButton();
   }
   
   
@@ -90,7 +102,7 @@ public class JButtonDemo extends JFrame {
       frame.setDefaultCloseOperation(EXIT_ON_CLOSE);  
       frame.setSize( 300, 300 );
       frame.setVisible( true );
-      frame.setLayout(new GridLayout(5,5));      // set the layout manager
+      frame.setLayout(new GridLayout(5,15));      // set the layout manager
 //      label.setVerticalTextPosition(JLabel.BOTTOM);
 //      label.setHorizontalTextPosition(JLabel.CENTER);
       frame.add(label);
@@ -103,7 +115,7 @@ public class JButtonDemo extends JFrame {
         JButtonDemo ya;
         int count, sum, a, b, wrong, wrong2, wrong3= 0;
         Random r = new Random();
-        for(int i=0; i<6; i++){
+        for(int i=0; i<1; i++){
            ya = new JButtonDemo();
            
            a = 1+r.nextInt(10);
@@ -115,7 +127,9 @@ public class JButtonDemo extends JFrame {
            wrong3 = 1+r.nextInt(10);
            
            ya.JButtonChoices(ques, sum+"", wrong2+"", wrong+"", sum+"", wrong3+"");
+            System.out.println("isCorrect: " + ya.isCorrect());
         }
+        
         
     }
 }

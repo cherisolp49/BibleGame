@@ -83,8 +83,9 @@ public class GameTester {
                     more = false;
                     break;
                 case 7:
-                    BibleTruth new10 = new BibleTruth("test.txt", 28);
-                    new10.printArray();
+                    BibleTruth new10 = new BibleTruth("Topics\\test.txt", 4);
+                    //new10.printArray();
+                    new10.gameOn();
                     more = false;
                     break;
                 default:
