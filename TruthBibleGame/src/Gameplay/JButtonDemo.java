@@ -43,12 +43,14 @@ public class JButtonDemo extends JFrame {
     
     for(int j=0; j<b.length; j++)
     {
+        System.out.println("hahahahahahha  1 ");
         displayJButton();
             System.out.println("What is this: " + clicked);
         //System.out.println(b[j].getActionCommand());
         if(b[j].getActionCommand().equalsIgnoreCase(ans)){
 //            correct = true;
 //            isCorrect();
+            System.out.println("hahahahahahah\t\t2");
         b[j].addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -65,6 +67,7 @@ public class JButtonDemo extends JFrame {
             }
         });
         }else{
+            System.out.println("hahahahahah\t\t\t3");
             b[j].addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -82,11 +85,12 @@ public class JButtonDemo extends JFrame {
             System.out.println("heehehehehehehyoyoyoyoyoyoyoyoy\t" + b.length);
         
     }
+      System.out.println("hahahahahahaha\t\t\t4");
             if(clicked==true){
                 frame.dispose();
                 System.out.println(clicked + "\t\t and ");
             }
-    
+      System.out.println("hehehehehehehehe");
   }
   
   
@@ -116,6 +120,7 @@ public class JButtonDemo extends JFrame {
         int count, sum, a, b, wrong, wrong2, wrong3= 0;
         Random r = new Random();
         for(int i=0; i<1; i++){
+            System.out.println("testing!!!!\t " + i);
            ya = new JButtonDemo();
            
            a = 1+r.nextInt(10);
