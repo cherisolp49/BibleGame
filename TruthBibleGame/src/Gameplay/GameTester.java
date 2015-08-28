@@ -45,18 +45,25 @@ public class GameTester {
                     switch(i)
                     {
                         case 1:
-                            BibleTruth new1 = new BibleTruth("Topics\\Q&A.txt", 28);
-                            new1.gameOn();
+                            BibleTruth new1 = new BibleTruth("Topics\\Q&A.txt", 40);
+                            new1.printArray();
+                            new1.gameOn2();
                             break;
                             
                         case 2:
                             new1 = new BibleTruth("Topics\\MarkOfTheBeast.txt",10);
+                            new1.printArray();
                             new1.gameOn();
                             break;
                             
                         case 3:
                             new1 = new BibleTruth("Topics\\Sanctuary.txt",10);
+                            new1.printArray();
                             new1.gameOn();
+                            break;
+                        case 4:
+                            new1 = new BibleTruth("Topics\\Q&A.txt", 40);
+                            new1.printArray();
                             break;
                             
                         default:
