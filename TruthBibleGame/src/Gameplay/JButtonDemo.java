@@ -23,6 +23,7 @@ public class JButtonDemo extends JFrame {
   boolean correct = false;
   boolean clicked = false;
   // constructor for ButtonFrame
+  String answer;
   JButtonDemo(){}
   
   public void JButtonChoices(String ques, String ans, String b1, String b2, String b3, String b4) 
@@ -41,34 +42,36 @@ public class JButtonDemo extends JFrame {
         b[i].setBounds(50, 250, 40, 10);
     }
     
-    for(int j=0; j<b.length; j++)
+    for( int index=0; index<b.length; index++)
     {
-        System.out.println("hahahahahahha  1 ");
+//        System.out.println("hahahahahahha  1 ");
         displayJButton();
-            System.out.println("What is this: " + clicked);
+//            System.out.println("What is this: " + clicked);
         //System.out.println(b[j].getActionCommand());
-        if(b[j].getActionCommand().equalsIgnoreCase(ans)){
+        if(b[index].getActionCommand().equalsIgnoreCase(ans)){
 //            correct = true;
 //            isCorrect();
-            System.out.println("hahahahahahah\t\t2");
-        b[j].addActionListener(new ActionListener()
+//            System.out.println("hahahahahahah\t\t2");
+            String text = b[index].getText();
+        b[index].addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                //JDialog d = new JDialog(frame, "You Got It Right!!!", true);
-                System.out.println("You got it Right!!!!!!");
+                JDialog d = new JDialog(frame, "You Got It Right!!!", true);
 //                d.setLocationRelativeTo(frame);
 //                d.setVisible(true);
-                System.out.println(clicked);
+//                System.out.println(clicked);
                 correct = true;
                 isCorrect();
                 clicked = true;
-                //System.exit(0);
+                answer  = text;
+                
             }
         });
         }else{
-            System.out.println("hahahahahah\t\t\t3");
-            b[j].addActionListener(new ActionListener()
+            String text = b[index].getText();
+//            System.out.println("hahahahahah\t\t\t3");
+            b[index].addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -77,20 +80,25 @@ public class JButtonDemo extends JFrame {
 //                d.setVisible(true);
                 System.out.println("Got it wrong!!!");
                 clicked = true;
+                answer = text;
                 isCorrect();
-                
             }
         });
         }
-            System.out.println("heehehehehehehyoyoyoyoyoyoyoyoy\t" + b.length);
+//            System.out.println("heehehehehehehyoyoyoyoyoyoyoyoy\t" + b.length);
+            
         
     }
-      System.out.println("hahahahahahaha\t\t\t4");
+    while(clicked==false){
+        System.out.print(""); //do nothing...find a better way to do this as I believe you are wasting memory
+    }
+//      System.out.println("hahahahahahaha\t\t\t4");
             if(clicked==true){
+//                System.out.println("something was click dawgie dawg!!!!!");
                 frame.dispose();
                 System.out.println(clicked + "\t\t and ");
             }
-      System.out.println("hehehehehehehehe");
+//      System.out.println("hehehehehehehehe");
   }
   
   
@@ -115,14 +123,17 @@ public class JButtonDemo extends JFrame {
       frame.add(b[2]);
       frame.add(b[3]);
   }
+  public String answer(){
+      
+      return answer;
+  }
     public static void main(String[] args) {
         JButtonDemo ya;
         int count, sum, a, b, wrong, wrong2, wrong3= 0;
         Random r = new Random();
         for(int i=0; i<1; i++){
-            System.out.println("testing!!!!\t " + i);
+//            System.out.println("testing!!!!\t " + i);
            ya = new JButtonDemo();
-           
            a = 1+r.nextInt(10);
            b = 1+r.nextInt(10);
            sum = a + b;
@@ -130,11 +141,10 @@ public class JButtonDemo extends JFrame {
            wrong = 1+r.nextInt(10);
            wrong2 = 1+r.nextInt(10);
            wrong3 = 1+r.nextInt(10);
-           
            ya.JButtonChoices(ques, sum+"", wrong2+"", wrong+"", sum+"", wrong3+"");
-            System.out.println("isCorrect: " + ya.isCorrect());
+           System.out.println("isCorrect: " + ya.isCorrect());
+            System.out.println(ya.answer());
+           System.out.println("Game Over");
         }
-        
-        
     }
 }
