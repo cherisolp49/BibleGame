@@ -156,11 +156,17 @@ public class BibleTruth {
          return out;
 
     }//end of printArray
+    
+    /*
+        This method generates a random number
+        Every number produced from this method is a newly generated number, meaning
+        there will be no duplicates produced by this method
+    */
     public int randomQuestionGenerator()
     {
         Random r = new Random();
         int randNum = 0;  //random question number from the text file;
-        int i = quesCount - 1;
+        int index = quesCount - 1;
 
         randNum = 1 + r.nextInt(this.list.length - 1); //gets a random question number
 
@@ -174,44 +180,12 @@ public class BibleTruth {
                 this.isNumADuplicateQues(randNum);
 
             }//eo while loop
-            oldQues[i] = randNum;
+            oldQues[index] = randNum;
 
         return randNum;
     }//end of randomQuestionGenerator
     
-    public void getQuestions()
-    {
-        String result = "";
-        String gTemp = "";
-        int num = randomQuestionGenerator();
-        String choices =  getMultipleQuestions(num);
-        String ques1 = this.list[num][0];
-        JBQues(this.list[num][0], this.list[num][1]);
-        String ques = ques1 + "\n" + choices;
-        JOptionPane.showMessageDialog(null, this.list[num][0] + "\n(Click ok to see the choices)");
-        //the code above asks the question w/o multiple choice
-        String input = JOptionPane.showInputDialog(null, ques, "Question " + quesCount, 3); //just changed count to quesCount
-        //pass the input to the method checkAnswer(input);
-        if(checkAnswer(input, num))//if answer is correct
-        {
-            JOptionPane.showMessageDialog(null, "You Got It Right!!!\nReference: " + this.list[num][5]);
-            //System.out.println(this.list[num][6] + "testing!!!!!!!!!!!fcdwfdsafdsa");
-            //player.incrementPoints(this.list[num][6]); //determines how much points player gets for correct response
-            gTemp = quesCount + " " + this.list[num][0] + " " + "The answer is: " + this.list[num][1]
-                    + " [You got this question correct!!!!]";
-            result = gTemp + " " + result;
-            //player.viewResults(result);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Sorry, but it looks like you were wrong.\nReference: " + this.list[num][5]);
-            gTemp = quesCount + " " + this.list[num][0] + " " + "The answer is: " + this.list[num][1]
-                    + " [You got this question incorrect]";
-            result = gTemp + " " + result;
-           // player.viewResults(result);
-        }
-        quesCount++;
-    }//end of getQuestions
+    
       /*
       @param number is the number of a random question that will be extracted
       from the text file
@@ -260,46 +234,6 @@ public class BibleTruth {
         return choice;
       }//end of getMultipleQuestions
       
-      public boolean checkAnswer(String input, int num)
-      {
-          boolean correct = false;
-          
-          
-         if(input.equalsIgnoreCase("A"))
-         {
-             if(option[0].equals(this.list[num][1])) //comparing the random question in option[0] to the actual answer of the question
-             {
-                  correct = true;
-             }
-         }
-         else if(input.equalsIgnoreCase("B"))
-         {
-             if(option[1].equals(this.list[num][1]))//comparing the random question in option[1] to the actual answer of the question
-             {
-                 correct = true;
-             }
-         }
-         else if(input.equalsIgnoreCase("C"))
-         {
-             
-             if(option[2].equals(this.list[num][1]))//comparing the random question in option[2] to the actual answer of the question
-             {
-                  correct = true;
-             }
-         }
-         else if(input.equalsIgnoreCase("D"))
-         {
-              if(option[3].equals(this.list[num][1]))//comparing the random question in option[3] to the actual answer of the question
-              {
-                  correct = true;
-              }
-         }
-         else
-         {
-              JOptionPane.showMessageDialog(null, "Invalid Input");//////////////Delete!!!!
-         }
-          return correct;
-      }//end of checkAnswer
       /*
       @param testing for duplicated questions. dupNumCheck is the number of
       the question being checked to see if it hasnt already occured
@@ -325,12 +259,12 @@ public class BibleTruth {
           return duplicated;
       }
       
-      public void gameOn()
+      public void gameOn2()
       {
            for (int i = 0; i < list.length-1; i++)
            {
-               getTheQuestions();
-               //getQuestions();
+               //getTheQuestions();
+               getQuestions2();
            }
            for (int j=0; j<oldQues.length-1; j++)
            {
@@ -338,23 +272,9 @@ public class BibleTruth {
            }
       }
       
-      
-      public void getTheQuestions()
-      {
-          int num = randomQuestionGenerator();
-          getMultipleQuestions(num);
-          JBQues(this.list[num][0], this.list[num][1]); //ques and answer
-//          if(b.isCorrect())
-//          {
-//              //JOptionPane.showMessageDialog(null, "Correct!!!!");
-//          }
-          
-          quesCount++;
-          
-      }
-      
       public void JBQues(String  ques, String ans)
       {
+          System.out.println("Entering JBQuest.....");
           b = new JButtonDemo();
           b.JButtonChoices(ques, ans, option[0], option[1], option[2], option[3]);
       }
@@ -366,4 +286,48 @@ public class BibleTruth {
           String file = "C:\\Users\\Patrick\\Documents\\NetBeansProjects\\TheTruthBibleGame\\testthisfilething1.txt";
           Process p = rt.exec("notepad " + file);
       }
+      public void getQuestions2()
+    {
+        String result = "";
+        String gTemp = "";
+        int num = randomQuestionGenerator(); //gets a random non duplicated number
+        String choices =  getMultipleQuestions(num);    //gets all multiple choice answers
+        String ques1 = this.list[num][0];
+        JBQues(this.list[num][0], this.list[num][1]);//passing the question and answer to the JButtons
+        String ques = ques1 + "\n" + choices;
+
+        //gets the button that was clicked and checks to see if it is correct or not;
+        if(checkAnswer2(b.answer(), num))//if answer is correct
+        {
+            JOptionPane.showMessageDialog(null, "You Got It Right!!!\nReference: " + this.list[num][5]);
+            //System.out.println(this.list[num][6] + "testing!!!!!!!!!!!fcdwfdsafdsa");
+            //player.incrementPoints(this.list[num][6]); //determines how much points player gets for correct response
+            gTemp = quesCount + " " + this.list[num][0] + " " + "The answer is: " + this.list[num][1]
+                    + " [You got this question correct!!!!]";
+            result = gTemp + " " + result;
+            //player.viewResults(result);
+        }
+        else
+        {
+            System.out.println("........." + b.answer());
+            JOptionPane.showMessageDialog(null, "Sorry, but it looks like you were wrong.\nReference: " + this.list[num][5]);
+            gTemp = quesCount + " " + this.list[num][0] + " " + "The answer is: " + this.list[num][1]
+                    + " [You got this question incorrect]";
+            result = gTemp + " " + result;
+           // player.viewResults(result);
+        }
+        quesCount++;
+    }//end of getQuestions
+      
+      public boolean checkAnswer2(String input, int num)
+      {
+          boolean correct = false;
+          
+          
+         if(input.equalsIgnoreCase(this.list[num][1]))
+         {
+                  correct = true;
+         }
+          return correct;
+      }//end of checkAnswer
 }//eof
